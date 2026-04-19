@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVEN | Performance without excess.</title>
+    <meta
+      name="description"
+      content="EVEN is a premium daily performance drink built for clarity, balance, and resilience."
+    />
+    <meta property="og:title" content="EVEN | Performance without excess." />
+    <meta
+      property="og:description"
+      content="Built for daily use across work and training. No spikes. No crashes. No extremes."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/hero-can.png" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #050505;
+        --panel: rgba(255, 255, 255, 0.04);
+        --panel-strong: rgba(255, 255, 255, 0.08);
+        --text: #f4f4f2;
+        --muted: rgba(244, 244, 242, 0.72);
+        --soft: rgba(244, 244, 242, 0.48);
+        --line: rgba(255, 255, 255, 0.12);
+        --line-strong: rgba(255, 255, 255, 0.22);
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        --radius: 24px;
+        --max-width: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 28%),
+          linear-gradient(180deg, #070707 0%, #050505 50%, #020202 100%);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page-shell {
+        overflow: hidden;
+      }
+
+      .container {
+        width: min(calc(100% - 40px), var(--max-width));
+        margin: 0 auto;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(5, 5, 5, 0.68);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
+
+      .brand {
+        font-size: 1rem;
+        letter-spacing: 0.38em;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .button,
+      button {
+        cursor: pointer;
+        border: 1px solid var(--line-strong);
+        background: transparent;
+        color: var(--text);
+        border-radius: 999px;
+        padding: 14px 22px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, opacity 180ms ease;
+      }
+
+      .button:hover,
+      button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.34);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .button.primary,
+      button.primary {
+        background: var(--text);
+        color: #050505;
+        border-color: var(--text);
+      }
+
+      .button.primary:hover,
+      button.primary:hover {
+        background: #ffffff;
+      }
+
+      .hero {
+        padding: 72px 0 42px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--soft);
+        font-size: 0.74rem;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 7vw, 6.2rem);
+        line-height: 0.94;
+        letter-spacing: -0.06em;
+        margin: 0 0 22px;
+        max-width: 720px;
+      }
+
+      .hero-copy {
+        color: var(--muted);
+        font-size: 1.12rem;
+        line-height: 1.7;
+        max-width: 620px;
+        margin-bottom: 32px;
+      }
+
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        color: var(--muted);
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .micro-note {
+        color: var(--soft);
+        font-size: 0.92rem;
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .hero-card {
+        position: relative;
+        min-height: 680px;
+        border-radius: 34px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.45));
+        pointer-events: none;
+      }
+
+      .hero-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 26px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: end;
+        z-index: 1;
+      }
+
+      .hero-overlay p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+        max-width: 320px;
+        line-height: 1.6;
+        font-size: 0.98rem;
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 26px;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.05;
+        margin: 0;
+        letter-spacing: -0.05em;
+      }
+
+      .section-title p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.7;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+        border-radius: var(--radius);
+        padding: 24px;
+      }
+
+      .panel-kicker {
+        color: var(--soft);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.72rem;
+        margin-bottom: 14px;
+      }
+
+      .panel h3 {
+        margin: 0 0 10px;
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .split-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .image-panel {
+        min-height: 620px;
+        overflow: hidden;
+        border-radius: 30px;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .image-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .content-panel {
+        padding: 34px;
+        border-radius: 30px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018));
+      }
+
+      .content-panel h2 {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.05em;
+      }
+
+      .content-panel > p {
+        color: var(--muted);
+        line-height: 1.78;
+        margin: 0 0 26px;
+        font-size: 1.02rem;
+      }
+
+      .formula-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 26px;
+      }
+
+      .formula-item {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .formula-item strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+      }
+
+      .formula-item span {
+        color: var(--muted);
+        line-height: 1.65;
+        font-size: 0.95rem;
+      }
+
+      .dark-band {
+        margin: 34px 0;
+        padding: 30px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .quote {
+        font-size: clamp(1.6rem, 2.8vw, 2.8rem);
+        line-height: 1.15;
+        letter-spacing: -0.05em;
+        max-width: 900px;
+        margin: 0 0 16px;
+      }
+
+      .quote-sub {
+        color: var(--muted);
+        max-width: 720px;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .gallery-card {
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        position: relative;
+        min-height: 420px;
+        box-shadow: var(--shadow);
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.58) 100%);
+      }
+
+      .gallery-caption {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 18px;
+        z-index: 1;
+      }
+
+      .gallery-caption strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1.05rem;
+      }
+
+      .gallery-caption span {
+        color: rgba(255,255,255,0.76);
+        font-size: 0.94rem;
+        line-height: 1.55;
+      }
+
+      .signup {
+        padding: 34px;
+        border-radius: 34px;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28%),
+          linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        box-shadow: var(--shadow);
+      }
+
+      .signup-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.95fr;
+        gap: 26px;
+        align-items: center;
+      }
+
+      .signup h2 {
+        margin: 0 0 16px;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .signup p {
+        color: var(--muted);
+        line-height: 1.75;
+        margin: 0;
+        max-width: 620px;
+      }
+
+      .form-shell {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 18px;
+        background: rgba(255,255,255,0.03);
+      }
+
+      .input-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      input[type="email"] {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1rem;
+        color: var(--text);
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        outline: none;
+      }
+
+      input[type="email"]:focus {
+        border-color: rgba(255,255,255,0.28);
+      }
+
+      .form-note {
+        margin-top: 12px;
+        color: var(--soft);
+        font-size: 0.85rem;
+      }
+
+      .footer {
+        padding: 26px 0 44px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        color: var(--soft);
+        font-size: 0.92rem;
+      }
+
+      .status {
+        margin-top: 14px;
+        min-height: 24px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .status.success {
+        color: #d8f5dd;
+      }
+
+      .status.error {
+        color: #ffb7b7;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-grid,
+        .split-grid,
+        .signup-grid,
+        .gallery,
+        .principles {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card,
+        .image-panel {
+          min-height: 520px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(calc(100% - 24px), var(--max-width));
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 42px;
+        }
+
+        .hero-card {
+          min-height: 420px;
+        }
+
+        .hero-overlay {
+          padding: 18px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .formula-grid,
+        .input-row {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .content-panel,
+        .signup,
+        .panel {
+          padding: 22px;
+        }
+
+        .gallery-card {
+          min-height: 320px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="nav">
+        <div class="container nav-inner">
+          <a href="#top" class="brand">EVEN</a>
+          <div class="nav-links">
+            <a href="#philosophy">Philosophy</a>
+            <a href="#formula">Formula</a>
+            <a href="#ritual">Ritual</a>
+            <a href="#access">Early Access</a>
+          </div>
+          <a class="button" href="#access">Get Early Access</a>
+        </div>
+      </nav>
+
+      <header class="hero" id="top">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">Premium daily performance drink</div>
+            <h1>Performance without excess.</h1>
+            <p class="hero-copy">
+              EVEN is built for people who work hard, train consistently, and reject extremes.
+              Focus, recovery, and daily support in a form that feels controlled, grounded, and repeatable.
+            </p>
+            <div class="hero-points">
+              <span class="chip">Clarity</span>
+              <span class="chip">Balance</span>
+              <span class="chip">Resilience</span>
+              <span class="chip">No spikes. No crashes.</span>
+            </div>
+            <div class="cta-row">
+              <a class="button primary" href="#access">Join the first release</a>
+              <a class="button" href="#formula">View the formula</a>
+            </div>
+            <div class="micro-note">Built for daily use across work and training.</div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card">
+              <img src="assets/hero-can.png" alt="EVEN can on a dark desk with city lights in the background" />
+              <div class="hero-overlay">
+                <p>
+                  Matte black. Minimal. Intentional. A daily standard, not another loud energy drink.
+                </p>
+                <a class="button" href="#gallery">See the campaign</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section" id="philosophy">
+        <div class="container">
+          <div class="section-title">
+            <h2>Built for disciplined balance.</h2>
+            <p>
+              EVEN sits between hype performance culture and vague wellness. The product is not about chasing peaks. It is about showing up daily with clarity, stability, and restraint.
+            </p>
+          </div>
+          <div class="principles">
+            <article class="panel">
+              <div class="panel-kicker">01</div>
+              <h3>Clarity</h3>
+              <p>
+                Moderate stimulation designed to sharpen attention without creating an aggressive spike.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="panel-kicker">02</div>
+              <h3>Balance</h3>
+              <p>
+                Hydration support for the overlap between long workdays, training, and repeatable routines.
+              </p>
+            </article>
+            <article class="panel">
+              <div class="panel-kicker">03</div>
+              <h3>Resilience</h3>
+              <p>
+                Daily support that feels composed and sustainable rather than overstimulated or indulgent.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="formula">
+        <div class="container split-grid">
+          <div class="image-panel">
+            <img src="assets/can-back.png" alt="Back of EVEN can with product information on a matte black background" />
+          </div>
+          <div class="content-panel">
+            <h2>No spikes. No crashes. No extremes.</h2>
+            <p>
+              The formula is intentionally moderate. Enough caffeine to perform. Enough theanine to stay smooth. Electrolytes for hydration. Vitamins for daily support. Everything designed around repeat use.
+            </p>
+            <div class="formula-grid">
+              <div class="formula-item">
+                <strong>50 mg caffeine</strong>
+                <span>Clean, moderate stimulation that sharpens focus without turning the drink into a stimulant bomb.</span>
+              </div>
+              <div class="formula-item">
+                <strong>75 mg L-theanine</strong>
+                <span>Smooths the profile so the energy feels controlled, calm, and more usable over long hours.</span>
+              </div>
+              <div class="formula-item">
+                <strong>Electrolytes</strong>
+                <span>Potassium, sodium, and magnesium support hydration across work, training, and recovery.</span>
+              </div>
+              <div class="formula-item">
+                <strong>Daily support</strong>
+                <span>Vitamin C, D3, B6, and B12 reinforce the daily-use system without overwhelming the product.</span>
+              </div>
+            </div>
+            <a class="button" href="#access">Get early access</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band">
+        <div class="container">
+          <p class="quote">“EVEN is not about maximizing output. It is about sustained, balanced effort across work, body, and mind.”</p>
+          <p class="quote-sub">
+            Calm. Precise. Confident. Built for people who do not need the loudest product in the room.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="ritual">
+        <div class="container">
+          <div class="section-title">
+            <h2>A brand with restraint.</h2>
+            <p>
+              The identity is deliberately minimal. Matte black, controlled typography, negative space, and a symbol that suggests progress rather than completion.
+            </p>
+          </div>
+          <div class="gallery" id="gallery">
+            <article class="gallery-card">
+              <img src="assets/gallery-1.png" alt="EVEN can on a black background" />
+              <div class="gallery-caption">
+                <strong>Minimal object</strong>
+                <span>A product meant to feel exact, understated, and expensive without trying too hard.</span>
+              </div>
+            </article>
+            <article class="gallery-card">
+              <img src="assets/gallery-2.png" alt="EVEN can with a luxury watch on a desk at night" />
+              <div class="gallery-caption">
+                <strong>Work and training</strong>
+                <span>Made for high-output people balancing long days, lifting sessions, and clean routines.</span>
+              </div>
+            </article>
+            <article class="gallery-card">
+              <img src="assets/gallery-3.png" alt="EVEN can in a dark gym environment with a jacket nearby" />
+              <div class="gallery-caption">
+                <strong>Daily ritual</strong>
+                <span>Not indulgence. Not hype. Just a product that belongs inside a disciplined life.</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="access">
+        <div class="container signup">
+          <div class="signup-grid">
+            <div>
+              <div class="eyebrow">Early access</div>
+              <h2>Stay even.</h2>
+              <p>
+                Join the first release list for early access, sample drops, and brand updates. Keep it controlled. Keep it selective.
+              </p>
+            </div>
+            <div class="form-shell">
+              <form id="waitlist-form">
+                <label for="email" class="eyebrow" style="display:block; margin-bottom:0;">Email address</label>
+                <div class="input-row">
+                  <input id="email" name="email" type="email" placeholder="Enter your email" required />
+                  <button type="submit" class="primary">Join</button>
+                </div>
+                <div class="form-note">This demo stores emails only in your browser. Connect a real form backend before you go live.</div>
+                <div id="status" class="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <div>EVEN</div>
+          <div>Performance without excess.</div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const form = document.getElementById("waitlist-form");
+      const emailInput = document.getElementById("email");
+      const statusNode = document.getElementById("status");
+      const STORAGE_KEY = "even_waitlist_emails";
+
+      function setStatus(message, type = "") {
+        statusNode.textContent = message;
+        statusNode.className = `status ${type}`.trim();
+      }
+
+      function getStoredEmails() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          console.error("Failed to read stored emails", error);
+          return [];
+        }
+      }
+
+      function saveStoredEmails(emails) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const email = emailInput.value.trim().toLowerCase();
+        if (!email) {
+          setStatus("Enter a valid email address.", "error");
+          return;
+        }
+
+        const emails = getStoredEmails();
+        const alreadyExists = emails.some((entry) => entry.email === email);
+
+        if (alreadyExists) {
+          setStatus("You are already on the list.", "error");
+          return;
+        }
+
+        emails.push({
+          email,
+          createdAt: new Date().toISOString(),
+        });
+
+        try {
+          saveStoredEmails(emails);
+          form.reset();
+          setStatus("You are in. We will reach out when EVEN is ready.", "success");
+        } catch (error) {
+          console.error("Failed to save email", error);
+          setStatus("Something went wrong. Try again.", "error");
+        }
+      });
+
+      // Optional: expose stored emails in the browser console for testing.
+      window.getEvenWaitlist = () => getStoredEmails();
+    </script>
+  </body>
+</html>
