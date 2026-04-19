@@ -25,16 +25,14 @@
     <style>
       :root {
         --bg: #050505;
-        --panel: rgba(255, 255, 255, 0.04);
-        --panel-strong: rgba(255, 255, 255, 0.08);
-        --text: #f4f4f2;
-        --muted: rgba(244, 244, 242, 0.72);
-        --soft: rgba(244, 244, 242, 0.48);
-        --line: rgba(255, 255, 255, 0.12);
-        --line-strong: rgba(255, 255, 255, 0.22);
-        --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-        --radius: 24px;
-        --max-width: 1200px;
+        --bg-soft: #0a0a0a;
+        --text: #f2f2ee;
+        --muted: rgba(242, 242, 238, 0.68);
+        --faint: rgba(242, 242, 238, 0.38);
+        --line: rgba(255, 255, 255, 0.09);
+        --line-strong: rgba(255, 255, 255, 0.18);
+        --shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+        --max-width: 1220px;
       }
 
       * {
@@ -49,16 +47,16 @@
         margin: 0;
         font-family: "Inter", sans-serif;
         background:
-          radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 28%),
-          linear-gradient(180deg, #070707 0%, #050505 50%, #020202 100%);
+          radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 26%),
+          linear-gradient(180deg, #070707 0%, #040404 48%, #020202 100%);
         color: var(--text);
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
 
       img {
-        max-width: 100%;
         display: block;
+        max-width: 100%;
       }
 
       a {
@@ -66,536 +64,478 @@
         text-decoration: none;
       }
 
+      button,
+      input {
+        font: inherit;
+      }
+
       .page-shell {
         overflow: hidden;
       }
 
       .container {
-        width: min(calc(100% - 40px), var(--max-width));
+        width: min(calc(100% - 48px), var(--max-width));
         margin: 0 auto;
       }
 
       .nav {
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: 40;
         backdrop-filter: blur(14px);
-        background: rgba(5, 5, 5, 0.68);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(5, 5, 5, 0.72);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       .nav-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 18px 0;
+        min-height: 72px;
       }
 
       .brand {
-        font-size: 1rem;
-        letter-spacing: 0.38em;
+        font-size: 0.98rem;
         font-weight: 700;
+        letter-spacing: 0.4em;
       }
 
       .nav-links {
         display: flex;
         gap: 28px;
-        align-items: center;
-      }
-
-      .nav-links a {
         color: var(--muted);
-        font-size: 0.95rem;
+        font-size: 0.94rem;
       }
 
-      .button,
-      button {
-        cursor: pointer;
-        border: 1px solid var(--line-strong);
-        background: transparent;
-        color: var(--text);
-        border-radius: 999px;
-        padding: 14px 22px;
-        font-size: 0.95rem;
-        font-weight: 500;
-        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, opacity 180ms ease;
-      }
-
-      .button:hover,
-      button:hover {
-        transform: translateY(-1px);
-        border-color: rgba(255, 255, 255, 0.34);
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .button.primary,
-      button.primary {
-        background: var(--text);
-        color: #050505;
-        border-color: var(--text);
-      }
-
-      .button.primary:hover,
-      button.primary:hover {
-        background: #ffffff;
+      .nav-cta {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        padding-bottom: 2px;
+        font-size: 0.94rem;
       }
 
       .hero {
-        padding: 72px 0 42px;
+        padding: 56px 0 28px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 48px;
-        align-items: center;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 40px;
+        align-items: end;
       }
 
       .eyebrow {
+        margin: 0 0 18px;
+        color: var(--faint);
         text-transform: uppercase;
-        letter-spacing: 0.24em;
-        color: var(--soft);
-        font-size: 0.74rem;
-        margin-bottom: 18px;
+        letter-spacing: 0.22em;
+        font-size: 0.72rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
       }
 
       h1 {
-        font-size: clamp(3rem, 7vw, 6.2rem);
-        line-height: 0.94;
-        letter-spacing: -0.06em;
-        margin: 0 0 22px;
+        font-size: clamp(3.4rem, 8vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.07em;
         max-width: 720px;
       }
 
-      .hero-copy {
+      .hero-subcopy {
+        margin-top: 22px;
+        max-width: 460px;
+        font-size: 1.02rem;
+        line-height: 1.8;
         color: var(--muted);
-        font-size: 1.12rem;
-        line-height: 1.7;
-        max-width: 620px;
-        margin-bottom: 32px;
       }
 
-      .hero-points {
+      .hero-actions {
         display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 32px;
+        gap: 22px;
+        align-items: center;
+        margin-top: 34px;
       }
 
-      .chip {
-        border: 1px solid var(--line);
-        color: var(--muted);
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-size: 0.92rem;
-        background: rgba(255, 255, 255, 0.025);
+      .link-button {
+        font-size: 0.96rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        padding-bottom: 3px;
       }
 
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-bottom: 22px;
-      }
-
-      .micro-note {
-        color: var(--soft);
+      .meta-line {
+        color: var(--faint);
         font-size: 0.92rem;
       }
 
       .hero-visual {
         position: relative;
-      }
-
-      .hero-card {
-        position: relative;
-        min-height: 680px;
-        border-radius: 34px;
+        min-height: 760px;
+        border-radius: 2px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
         box-shadow: var(--shadow);
       }
 
-      .hero-card::before {
+      .hero-visual::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.45));
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.38));
         pointer-events: none;
       }
 
-      .hero-card img {
+      .hero-visual img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      .hero-overlay {
+      .hero-caption {
         position: absolute;
-        inset: auto 0 0 0;
-        padding: 26px;
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: end;
+        right: 24px;
+        bottom: 22px;
         z-index: 1;
-      }
-
-      .hero-overlay p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.74);
-        max-width: 320px;
-        line-height: 1.6;
-        font-size: 0.98rem;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
       .section {
-        padding: 34px 0;
+        padding: 76px 0;
       }
 
-      .section-title {
-        display: flex;
+      .section-header {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.8fr);
+        gap: 28px;
         align-items: end;
-        justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 26px;
+        margin-bottom: 28px;
       }
 
-      .section-title h2 {
-        font-size: clamp(2rem, 3vw, 3rem);
-        line-height: 1.05;
-        margin: 0;
-        letter-spacing: -0.05em;
+      .section-header h2 {
+        font-size: clamp(2rem, 4vw, 3.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
       }
 
-      .section-title p {
-        margin: 0;
+      .section-header p {
+        max-width: 460px;
+        justify-self: end;
         color: var(--muted);
-        max-width: 520px;
-        line-height: 1.7;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0));
+        margin-bottom: 28px;
       }
 
       .principles {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
+        gap: 28px;
       }
 
-      .panel {
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-        border-radius: var(--radius);
-        padding: 24px;
+      .principle {
+        padding-top: 8px;
       }
 
-      .panel-kicker {
-        color: var(--soft);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.72rem;
-        margin-bottom: 14px;
+      .principle-index {
+        color: var(--faint);
+        font-size: 0.76rem;
+        letter-spacing: 0.18em;
+        margin-bottom: 20px;
       }
 
-      .panel h3 {
-        margin: 0 0 10px;
-        font-size: 1.45rem;
-        letter-spacing: -0.04em;
-      }
-
-      .panel p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .split-grid {
-        display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: 22px;
-        align-items: stretch;
-      }
-
-      .image-panel {
-        min-height: 620px;
-        overflow: hidden;
-        border-radius: 30px;
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow);
-      }
-
-      .image-panel img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .content-panel {
-        padding: 34px;
-        border-radius: 30px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018));
-      }
-
-      .content-panel h2 {
-        margin: 0 0 18px;
-        font-size: clamp(2rem, 3vw, 3.2rem);
-        line-height: 1.02;
+      .principle h3 {
+        font-size: 1.7rem;
         letter-spacing: -0.05em;
+        margin-bottom: 10px;
       }
 
-      .content-panel > p {
+      .principle p {
         color: var(--muted);
-        line-height: 1.78;
-        margin: 0 0 26px;
-        font-size: 1.02rem;
+        line-height: 1.8;
+        max-width: 320px;
       }
 
       .formula-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-bottom: 26px;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 48px;
+        align-items: start;
       }
 
-      .formula-item {
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 18px;
-        background: rgba(255, 255, 255, 0.025);
-      }
-
-      .formula-item strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 1.05rem;
-      }
-
-      .formula-item span {
-        color: var(--muted);
-        line-height: 1.65;
-        font-size: 0.95rem;
-      }
-
-      .dark-band {
-        margin: 34px 0;
-        padding: 30px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .quote {
-        font-size: clamp(1.6rem, 2.8vw, 2.8rem);
-        line-height: 1.15;
-        letter-spacing: -0.05em;
-        max-width: 900px;
-        margin: 0 0 16px;
-      }
-
-      .quote-sub {
-        color: var(--muted);
-        max-width: 720px;
-        line-height: 1.7;
-        margin: 0;
-      }
-
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .gallery-card {
-        border-radius: 28px;
+      .formula-image {
+        min-height: 760px;
         overflow: hidden;
-        border: 1px solid var(--line);
-        position: relative;
-        min-height: 420px;
         box-shadow: var(--shadow);
       }
 
-      .gallery-card img {
+      .formula-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      .gallery-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.58) 100%);
+      .formula-copy {
+        padding-top: 10px;
       }
 
-      .gallery-caption {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        bottom: 18px;
-        z-index: 1;
+      .formula-copy h2 {
+        font-size: clamp(2.2rem, 4vw, 4.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.07em;
+        max-width: 560px;
       }
 
-      .gallery-caption strong {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 1.05rem;
+      .formula-copy > p {
+        margin-top: 22px;
+        max-width: 520px;
+        color: var(--muted);
+        line-height: 1.85;
       }
 
-      .gallery-caption span {
-        color: rgba(255,255,255,0.76);
-        font-size: 0.94rem;
-        line-height: 1.55;
+      .formula-list {
+        margin-top: 34px;
+        border-top: 1px solid var(--line);
       }
 
-      .signup {
-        padding: 34px;
-        border-radius: 34px;
-        border: 1px solid var(--line);
-        background:
-          radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28%),
-          linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      .formula-row {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 26px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .formula-row strong {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .formula-row span {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .quote-band {
+        padding: 84px 0;
+      }
+
+      .quote-band p {
+        max-width: 960px;
+        font-size: clamp(2rem, 4.5vw, 4rem);
+        line-height: 1.02;
+        letter-spacing: -0.07em;
+      }
+
+      .ritual-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .ritual-large,
+      .ritual-stack img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .ritual-large {
+        min-height: 680px;
+        overflow: hidden;
         box-shadow: var(--shadow);
       }
 
-      .signup-grid {
+      .ritual-stack {
         display: grid;
-        grid-template-columns: 1fr 0.95fr;
-        gap: 26px;
-        align-items: center;
+        grid-template-rows: 1fr 1fr;
+        gap: 22px;
       }
 
-      .signup h2 {
-        margin: 0 0 16px;
-        font-size: clamp(2rem, 3vw, 3rem);
-        letter-spacing: -0.05em;
+      .ritual-stack-item {
+        min-height: 329px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
       }
 
-      .signup p {
+      .closing {
+        padding: 92px 0 120px;
+      }
+
+      .closing-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 42px;
+        align-items: start;
+      }
+
+      .closing-copy h2 {
+        font-size: clamp(2.2rem, 4vw, 4.2rem);
+        line-height: 0.94;
+        letter-spacing: -0.07em;
+        max-width: 520px;
+      }
+
+      .closing-copy p {
+        margin-top: 22px;
+        max-width: 420px;
         color: var(--muted);
-        line-height: 1.75;
-        margin: 0;
-        max-width: 620px;
+        line-height: 1.85;
       }
 
-      .form-shell {
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        padding: 18px;
-        background: rgba(255,255,255,0.03);
+      .waitlist-shell {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
       }
 
-      .input-row {
-        display: flex;
-        gap: 12px;
-        margin-top: 14px;
+      .waitlist-form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 14px;
+        align-items: end;
       }
 
-      input[type="email"] {
+      .field-label {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--faint);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+      }
+
+      .email-input {
         width: 100%;
-        padding: 16px 18px;
-        font-size: 1rem;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--line-strong);
         color: var(--text);
-        background: rgba(255,255,255,0.03);
-        border: 1px solid var(--line);
-        border-radius: 999px;
+        padding: 0 0 14px;
+        border-radius: 0;
         outline: none;
+        font-size: 1rem;
       }
 
-      input[type="email"]:focus {
-        border-color: rgba(255,255,255,0.28);
+      .email-input:focus {
+        border-bottom-color: rgba(255, 255, 255, 0.35);
       }
 
-      .form-note {
-        margin-top: 12px;
-        color: var(--soft);
-        font-size: 0.85rem;
+      .submit-button {
+        border: none;
+        background: transparent;
+        color: var(--text);
+        padding: 0 0 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        cursor: pointer;
+        font-size: 0.96rem;
+      }
+
+      .form-note,
+      .status {
+        margin-top: 14px;
+        color: var(--faint);
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+
+      .status.success {
+        color: #dff0df;
+      }
+
+      .status.error {
+        color: #f5b6b6;
       }
 
       .footer {
-        padding: 26px 0 44px;
+        padding: 0 0 34px;
       }
 
       .footer-inner {
         display: flex;
         justify-content: space-between;
         gap: 18px;
-        align-items: center;
-        color: var(--soft);
-        font-size: 0.92rem;
-      }
-
-      .status {
-        margin-top: 14px;
-        min-height: 24px;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .status.success {
-        color: #d8f5dd;
-      }
-
-      .status.error {
-        color: #ffb7b7;
+        color: var(--faint);
+        font-size: 0.9rem;
       }
 
       @media (max-width: 1100px) {
         .hero-grid,
-        .split-grid,
-        .signup-grid,
-        .gallery,
+        .section-header,
+        .formula-grid,
+        .ritual-grid,
+        .closing-grid,
         .principles {
           grid-template-columns: 1fr;
         }
 
-        .hero-card,
-        .image-panel {
-          min-height: 520px;
+        .section-header p {
+          justify-self: start;
+        }
+
+        .ritual-stack {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: none;
+        }
+
+        .hero-visual,
+        .formula-image,
+        .ritual-large {
+          min-height: 560px;
         }
       }
 
       @media (max-width: 720px) {
         .container {
-          width: min(calc(100% - 24px), var(--max-width));
+          width: min(calc(100% - 28px), var(--max-width));
         }
 
-        .nav-links {
+        .nav-links,
+        .nav-cta {
           display: none;
         }
 
         .hero {
-          padding-top: 42px;
+          padding-top: 34px;
         }
 
-        .hero-card {
+        .hero-visual,
+        .formula-image,
+        .ritual-large {
           min-height: 420px;
         }
 
-        .hero-overlay {
-          padding: 18px;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .formula-grid,
-        .input-row {
+        .hero-actions,
+        .waitlist-form,
+        .formula-row,
+        .ritual-stack,
+        .footer-inner {
           grid-template-columns: 1fr;
           display: grid;
         }
 
-        .content-panel,
-        .signup,
-        .panel {
-          padding: 22px;
+        .hero-actions {
+          gap: 14px;
+          align-items: start;
         }
 
-        .gallery-card {
-          min-height: 320px;
+        .formula-row {
+          gap: 8px;
         }
 
-        .footer-inner {
-          flex-direction: column;
-          align-items: flex-start;
+        .ritual-stack-item {
+          min-height: 240px;
         }
       }
     </style>
@@ -608,180 +548,147 @@
           <div class="nav-links">
             <a href="#philosophy">Philosophy</a>
             <a href="#formula">Formula</a>
-            <a href="#ritual">Ritual</a>
-            <a href="#access">Early Access</a>
+            <a href="#access">Access</a>
           </div>
-          <a class="button" href="#access">Get Early Access</a>
+          <a class="nav-cta" href="#access">Join</a>
         </div>
       </nav>
 
       <header class="hero" id="top">
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow">Premium daily performance drink</div>
-            <h1>Performance without excess.</h1>
-            <p class="hero-copy">
-              EVEN is built for people who work hard, train consistently, and reject extremes.
-              Focus, recovery, and daily support in a form that feels controlled, grounded, and repeatable.
+            <p class="eyebrow">Premium daily performance drink</p>
+            <h1>Stay even.</h1>
+            <p class="hero-subcopy">
+              Focus, hydration, and restraint for people who work hard and train hard.
             </p>
-            <div class="hero-points">
-              <span class="chip">Clarity</span>
-              <span class="chip">Balance</span>
-              <span class="chip">Resilience</span>
-              <span class="chip">No spikes. No crashes.</span>
+            <div class="hero-actions">
+              <a class="link-button" href="#access">Get early access</a>
+              <span class="meta-line">No spikes. No crashes. No extremes.</span>
             </div>
-            <div class="cta-row">
-              <a class="button primary" href="#access">Join the first release</a>
-              <a class="button" href="#formula">View the formula</a>
-            </div>
-            <div class="micro-note">Built for daily use across work and training.</div>
           </div>
 
           <div class="hero-visual">
-            <div class="hero-card">
-              <img src="assets/hero-can.png" alt="EVEN can on a dark desk with city lights in the background" />
-              <div class="hero-overlay">
-                <p>
-                  Matte black. Minimal. Intentional. A daily standard, not another loud energy drink.
-                </p>
-                <a class="button" href="#gallery">See the campaign</a>
-              </div>
-            </div>
+            <img src="assets/hero-can.png" alt="EVEN can on a dark desk with city lights in the background" />
+            <div class="hero-caption">Performance without excess</div>
           </div>
         </div>
       </header>
 
       <section class="section" id="philosophy">
         <div class="container">
-          <div class="section-title">
+          <div class="section-header">
             <h2>Built for disciplined balance.</h2>
             <p>
-              EVEN sits between hype performance culture and vague wellness. The product is not about chasing peaks. It is about showing up daily with clarity, stability, and restraint.
+              A daily standard for people who do not want a louder drink. Just a better one.
             </p>
           </div>
+          <div class="divider"></div>
           <div class="principles">
-            <article class="panel">
-              <div class="panel-kicker">01</div>
+            <article class="principle">
+              <div class="principle-index">01</div>
               <h3>Clarity</h3>
-              <p>
-                Moderate stimulation designed to sharpen attention without creating an aggressive spike.
-              </p>
+              <p>Moderate stimulation that sharpens attention without feeling aggressive.</p>
             </article>
-            <article class="panel">
-              <div class="panel-kicker">02</div>
+            <article class="principle">
+              <div class="principle-index">02</div>
               <h3>Balance</h3>
-              <p>
-                Hydration support for the overlap between long workdays, training, and repeatable routines.
-              </p>
+              <p>Hydration support for the overlap between long workdays and training.</p>
             </article>
-            <article class="panel">
-              <div class="panel-kicker">03</div>
+            <article class="principle">
+              <div class="principle-index">03</div>
               <h3>Resilience</h3>
-              <p>
-                Daily support that feels composed and sustainable rather than overstimulated or indulgent.
-              </p>
+              <p>Daily support designed to feel composed, repeatable, and calm.</p>
             </article>
           </div>
         </div>
       </section>
 
       <section class="section" id="formula">
-        <div class="container split-grid">
-          <div class="image-panel">
+        <div class="container formula-grid">
+          <div class="formula-image">
             <img src="assets/can-back.png" alt="Back of EVEN can with product information on a matte black background" />
           </div>
-          <div class="content-panel">
+          <div class="formula-copy">
             <h2>No spikes. No crashes. No extremes.</h2>
             <p>
-              The formula is intentionally moderate. Enough caffeine to perform. Enough theanine to stay smooth. Electrolytes for hydration. Vitamins for daily support. Everything designed around repeat use.
+              Enough caffeine to perform. Enough theanine to stay smooth. Electrolytes for hydration. Vitamins for daily support.
             </p>
-            <div class="formula-grid">
-              <div class="formula-item">
+            <div class="formula-list">
+              <div class="formula-row">
                 <strong>50 mg caffeine</strong>
-                <span>Clean, moderate stimulation that sharpens focus without turning the drink into a stimulant bomb.</span>
+                <span>Clean, moderate energy.</span>
               </div>
-              <div class="formula-item">
+              <div class="formula-row">
                 <strong>75 mg L-theanine</strong>
-                <span>Smooths the profile so the energy feels controlled, calm, and more usable over long hours.</span>
+                <span>Calmer focus over longer hours.</span>
               </div>
-              <div class="formula-item">
+              <div class="formula-row">
                 <strong>Electrolytes</strong>
-                <span>Potassium, sodium, and magnesium support hydration across work, training, and recovery.</span>
+                <span>Potassium, sodium, and magnesium for hydration.</span>
               </div>
-              <div class="formula-item">
+              <div class="formula-row">
                 <strong>Daily support</strong>
-                <span>Vitamin C, D3, B6, and B12 reinforce the daily-use system without overwhelming the product.</span>
+                <span>Vitamins C, D3, B6, and B12.</span>
               </div>
             </div>
-            <a class="button" href="#access">Get early access</a>
           </div>
         </div>
       </section>
 
-      <section class="dark-band">
+      <section class="quote-band">
         <div class="container">
-          <p class="quote">“EVEN is not about maximizing output. It is about sustained, balanced effort across work, body, and mind.”</p>
-          <p class="quote-sub">
-            Calm. Precise. Confident. Built for people who do not need the loudest product in the room.
+          <p>
+            EVEN is not about maximizing output. It is about sustained, balanced effort across work, body, and mind.
           </p>
         </div>
       </section>
 
-      <section class="section" id="ritual">
-        <div class="container">
-          <div class="section-title">
-            <h2>A brand with restraint.</h2>
-            <p>
-              The identity is deliberately minimal. Matte black, controlled typography, negative space, and a symbol that suggests progress rather than completion.
-            </p>
+      <section class="section">
+        <div class="container ritual-grid">
+          <div class="ritual-large">
+            <img src="assets/gallery-2.png" alt="EVEN can with a luxury watch on a desk at night" />
           </div>
-          <div class="gallery" id="gallery">
-            <article class="gallery-card">
+          <div class="ritual-stack">
+            <div class="ritual-stack-item">
               <img src="assets/gallery-1.png" alt="EVEN can on a black background" />
-              <div class="gallery-caption">
-                <strong>Minimal object</strong>
-                <span>A product meant to feel exact, understated, and expensive without trying too hard.</span>
-              </div>
-            </article>
-            <article class="gallery-card">
-              <img src="assets/gallery-2.png" alt="EVEN can with a luxury watch on a desk at night" />
-              <div class="gallery-caption">
-                <strong>Work and training</strong>
-                <span>Made for high-output people balancing long days, lifting sessions, and clean routines.</span>
-              </div>
-            </article>
-            <article class="gallery-card">
+            </div>
+            <div class="ritual-stack-item">
               <img src="assets/gallery-3.png" alt="EVEN can in a dark gym environment with a jacket nearby" />
-              <div class="gallery-caption">
-                <strong>Daily ritual</strong>
-                <span>Not indulgence. Not hype. Just a product that belongs inside a disciplined life.</span>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="access">
-        <div class="container signup">
-          <div class="signup-grid">
-            <div>
-              <div class="eyebrow">Early access</div>
-              <h2>Stay even.</h2>
-              <p>
-                Join the first release list for early access, sample drops, and brand updates. Keep it controlled. Keep it selective.
-              </p>
-            </div>
-            <div class="form-shell">
-              <form id="waitlist-form">
-                <label for="email" class="eyebrow" style="display:block; margin-bottom:0;">Email address</label>
-                <div class="input-row">
-                  <input id="email" name="email" type="email" placeholder="Enter your email" required />
-                  <button type="submit" class="primary">Join</button>
-                </div>
-                <div class="form-note">This demo stores emails only in your browser. Connect a real form backend before you go live.</div>
-                <div id="status" class="status" aria-live="polite"></div>
-              </form>
-            </div>
+      <section class="closing" id="access">
+        <div class="container closing-grid">
+          <div class="closing-copy">
+            <p class="eyebrow">Early access</p>
+            <h2>First release. Limited list.</h2>
+            <p>
+              Join for sample drops, launch updates, and first access when EVEN goes live.
+            </p>
+          </div>
+
+          <div class="waitlist-shell">
+            <form id="waitlist-form">
+              <label for="email" class="field-label">Email address</label>
+              <div class="waitlist-form">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="email-input"
+                  placeholder="Enter your email"
+                  required
+                />
+                <button type="submit" class="submit-button">Join</button>
+              </div>
+              <div class="form-note">
+                Demo mode only. Connect a real form backend before publishing.
+              </div>
+              <div id="status" class="status" aria-live="polite"></div>
+            </form>
           </div>
         </div>
       </section>
@@ -853,7 +760,6 @@
         }
       });
 
-      // Optional: expose stored emails in the browser console for testing.
       window.getEvenWaitlist = () => getStoredEmails();
     </script>
   </body>
