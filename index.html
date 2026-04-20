@@ -26,7 +26,7 @@
       :root {
         --bg: #000000;
         --text: #f2f2ee;
-        --muted: rgba(242, 242, 238, 0.64);
+        --muted: rgba(242, 242, 238, 0.62);
         --faint: rgba(242, 242, 238, 0.34);
         --line: rgba(255, 255, 255, 0.08);
         --line-strong: rgba(255, 255, 255, 0.18);
@@ -126,7 +126,6 @@
 
       h1,
       h2,
-      h3,
       p {
         margin: 0;
       }
@@ -153,16 +152,10 @@
         margin-top: 44px;
       }
 
-      .meta-line,
-      .link-button {
+      .meta-line {
         color: var(--faint);
         font-size: 0.8rem;
         letter-spacing: 0.06em;
-      }
-
-      .link-button {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-        padding-bottom: 3px;
       }
 
       .hero-visual {
@@ -202,61 +195,6 @@
         padding: 148px 0;
       }
 
-      .section-header {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.7fr);
-        gap: 56px;
-        align-items: end;
-        margin-bottom: 36px;
-      }
-
-      .section-header h2 {
-        font-size: clamp(1.9rem, 4vw, 3.5rem);
-        line-height: 0.94;
-        letter-spacing: -0.07em;
-        max-width: 520px;
-      }
-
-      .section-header p {
-        max-width: 340px;
-        justify-self: end;
-        color: var(--faint);
-        line-height: 1.9;
-        font-size: 0.88rem;
-      }
-
-      .divider {
-        height: 1px;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0));
-        margin-bottom: 42px;
-      }
-
-      .principles {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 54px;
-      }
-
-      .principle-index {
-        color: var(--faint);
-        font-size: 0.64rem;
-        letter-spacing: 0.18em;
-        margin-bottom: 24px;
-      }
-
-      .principle h3 {
-        font-size: 1.28rem;
-        letter-spacing: -0.05em;
-        margin-bottom: 10px;
-      }
-
-      .principle p {
-        color: var(--faint);
-        line-height: 1.9;
-        max-width: 260px;
-        font-size: 0.86rem;
-      }
-
       .formula-grid {
         display: grid;
         grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -286,14 +224,6 @@
         line-height: 0.92;
         letter-spacing: -0.08em;
         max-width: 480px;
-      }
-
-      .formula-copy > p {
-        margin-top: 26px;
-        max-width: 380px;
-        color: var(--faint);
-        line-height: 1.9;
-        font-size: 0.88rem;
       }
 
       .formula-list {
@@ -341,10 +271,6 @@
         align-items: stretch;
       }
 
-      .ritual-large img {
-        width: 100%;
-        heigh
-
       .ritual-large {
         min-height: 760px;
         overflow: hidden;
@@ -352,21 +278,14 @@
         background: #000;
       }
 
-      .ritual-stack {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        gap: 28px;
-      }
-
-      .ritual-stack-item {
-        min-height: 366px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        background: #000;
+      .ritual-large img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .closing {
-        padding: 150px 0 120px;
+        padding: 170px 0 120px;
       }
 
       .closing-grid {
@@ -459,21 +378,10 @@
 
       @media (max-width: 1100px) {
         .hero-grid,
-        .section-header,
         .formula-grid,
         .ritual-grid,
-        .closing-grid,
-        .principles {
+        .closing-grid {
           grid-template-columns: 1fr;
-        }
-
-        .section-header p {
-          justify-self: start;
-        }
-
-        .ritual-stack {
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: none;
         }
 
         .hero-visual,
@@ -505,21 +413,34 @@
         .hero-grid,
         .formula-grid,
         .closing-grid,
-        .ritual-stack,
         .footer-inner,
-        .formula-row {
+        .formula-row,
+        .ritual-grid {
           grid-template-columns: 1fr;
           display: grid;
         }
 
         .hero-grid,
         .formula-grid,
-        .closing-grid {
+        .closing-grid,
+        .ritual-grid {
           gap: 40px;
         }
 
-        .ritual-stack-item {
-          min-height: 240px;
+        .section {
+          padding: 110px 0;
+        }
+
+        .hero-subcopy,
+        .closing-copy p,
+        .waitlist-shell {
+          max-width: 100%;
+        }
+
+        .hero-caption,
+        .meta-line,
+        .footer-inner {
+          text-align: center;
         }
       }
     </style>
@@ -530,11 +451,10 @@
         <div class="container nav-inner">
           <a href="#top" class="brand">EVEN</a>
           <div class="nav-links">
-            <a href="#philosophy">Philosophy</a>
             <a href="#formula">Formula</a>
             <a href="#access">Access</a>
           </div>
-          </div>
+        </div>
       </nav>
 
       <header class="hero" id="top">
@@ -557,8 +477,6 @@
         </div>
       </header>
 
-      
-
       <section class="section" id="formula">
         <div class="container formula-grid">
           <div class="formula-image">
@@ -566,7 +484,6 @@
           </div>
           <div class="formula-copy">
             <h2>No spikes. No crashes. No extremes.</h2>
-            
             <div class="formula-list">
               <div class="formula-row">
                 <strong>50 mg caffeine</strong>
@@ -598,7 +515,7 @@
       </section>
 
       <section class="section">
-        <div class="container ritual-grid two-up">
+        <div class="container ritual-grid">
           <div class="ritual-large">
             <img src="assets/gallery-2.png" alt="EVEN can with a luxury watch on a desk at night" />
           </div>
@@ -630,7 +547,6 @@
                   placeholder="Enter your email"
                   required
                 />
-                
               </div>
               <div class="form-note">
                 Demo mode only.
