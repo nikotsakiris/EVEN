@@ -199,7 +199,7 @@
       }
 
       .section {
-        padding: 128px 0;
+        padding: 148px 0;
       }
 
       .section-header {
@@ -336,17 +336,14 @@
 
       .ritual-grid {
         display: grid;
-        grid-template-columns: 1.02fr 0.98fr;
+        grid-template-columns: 1fr 1fr;
         gap: 28px;
         align-items: stretch;
       }
 
-      .ritual-large,
-      .ritual-stack img {
+      .ritual-large img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+        heigh
 
       .ritual-large {
         min-height: 760px;
@@ -560,34 +557,7 @@
         </div>
       </header>
 
-      <section class="section" id="philosophy">
-        <div class="container">
-          <div class="section-header">
-            <h2>Built for disciplined balance.</h2>
-            <p>
-              Less noise. More control.
-            </p>
-          </div>
-          <div class="divider"></div>
-          <div class="principles">
-            <article class="principle">
-              <div class="principle-index">01</div>
-              <h3>Clarity</h3>
-              <p>Clean focus.</p>
-            </article>
-            <article class="principle">
-              <div class="principle-index">02</div>
-              <h3>Balance</h3>
-              <p>Steady output.</p>
-            </article>
-            <article class="principle">
-              <div class="principle-index">03</div>
-              <h3>Resilience</h3>
-              <p>Built to repeat.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+      
 
       <section class="section" id="formula">
         <div class="container formula-grid">
@@ -596,25 +566,23 @@
           </div>
           <div class="formula-copy">
             <h2>No spikes. No crashes. No extremes.</h2>
-            <p>
-              Enough caffeine to perform. Enough theanine to stay smooth. Electrolytes for hydration. Vitamins for daily support.
-            </p>
+            
             <div class="formula-list">
               <div class="formula-row">
                 <strong>50 mg caffeine</strong>
-                <span>Clean, moderate energy.</span>
+                <span>Focus.</span>
               </div>
               <div class="formula-row">
                 <strong>75 mg L-theanine</strong>
-                <span>Calmer focus over longer hours.</span>
+                <span>Smoothness.</span>
               </div>
               <div class="formula-row">
                 <strong>Electrolytes</strong>
-                <span>Potassium, sodium, and magnesium for hydration.</span>
+                <span>Hydration.</span>
               </div>
               <div class="formula-row">
                 <strong>Daily support</strong>
-                <span>Vitamins C, D3, B6, and B12.</span>
+                <span>Support.</span>
               </div>
             </div>
           </div>
@@ -630,17 +598,12 @@
       </section>
 
       <section class="section">
-        <div class="container ritual-grid">
+        <div class="container ritual-grid two-up">
           <div class="ritual-large">
             <img src="assets/gallery-2.png" alt="EVEN can with a luxury watch on a desk at night" />
           </div>
-          <div class="ritual-stack">
-            <div class="ritual-stack-item">
-              <img src="assets/gallery-1.png" alt="EVEN can on a black background" />
-            </div>
-            <div class="ritual-stack-item">
-              <img src="assets/gallery-3.png" alt="EVEN can in a dark gym environment with a jacket nearby" />
-            </div>
+          <div class="ritual-large">
+            <img src="assets/gallery-1.png" alt="EVEN can on a black background" />
           </div>
         </div>
       </section>
@@ -651,7 +614,7 @@
             <p class="eyebrow">Early access</p>
             <h2>First release. Limited list.</h2>
             <p>
-              Join for sample drops, launch updates, and first access when EVEN goes live.
+              Early access for the first release.
             </p>
           </div>
 
@@ -667,10 +630,10 @@
                   placeholder="Enter your email"
                   required
                 />
-                <button type="submit" class="submit-button">Join</button>
+                
               </div>
               <div class="form-note">
-                Demo mode only. Connect a real form backend before publishing.
+                Demo mode only.
               </div>
               <div id="status" class="status" aria-live="polite"></div>
             </form>
@@ -681,7 +644,7 @@
       <footer class="footer">
         <div class="container footer-inner">
           <div>EVEN</div>
-          <div>Performance without excess.</div>
+          <div>Stay even.</div>
         </div>
       </footer>
     </div>
