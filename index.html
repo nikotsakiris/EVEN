@@ -100,6 +100,27 @@
       text-align: right;
     }
 
+    /* CTA */
+    .cta {
+      margin-top: 40px;
+    }
+
+    .text-button {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242, 242, 238, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .text-button:hover {
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
     /* MOBILE */
     @media (max-width: 768px) {
       .container {
@@ -110,10 +131,6 @@
       .main {
         grid-template-columns: 1fr;
         gap: 40px;
-      }
-
-      .product {
-        justify-content: center;
       }
 
       .product img {
@@ -157,13 +174,20 @@
         </p>
 
         <div class="nutrition">
-          <div class="row"><span>Serving</span><span>1 can</span></div>
           <div class="row"><span>Caffeine</span><span>50 mg</span></div>
           <div class="row"><span>L-theanine</span><span>75 mg</span></div>
-          <div class="row"><span>Electrolytes</span><span>Na<sup>+</sup>, K<sup>+</sup>, Mg<sup>2+</sup></span></div>          
+          <div class="row"><span>Electrolytes</span><span>Na<sup>+</sup>, K<sup>+</sup>, Mg<sup>2+</sup></span></div>
           <div class="row"><span>Vitamins</span><span>B6, B12, C, D3</span></div>
-          <div class="row"><span>Flavor</span><span>Greek Mastic Gum</span></div>
+          <div class="row"><span>Flavor</span><span>Greek Mastic Gum, Lemon, Mint</span></div>
         </div>
+
+        <!-- TEXT CTA -->
+        <div class="cta">
+          <a href="sms:+18573170011?body=I%20want%20EVEN" class="text-button">
+            Text to get access
+          </a>
+        </div>
+
       </div>
 
     </div>
