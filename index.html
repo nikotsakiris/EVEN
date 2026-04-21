@@ -1,144 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVEN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVEN</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
 
-<style>
-body {
-  margin: 0;
-  background: #000;
-  color: #f2f2ee;
-  font-family: "Inter", sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
+    body {
+      margin: 0;
+      background: #000;
+      color: #f2f2ee;
+      font-family: "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-/* DESKTOP LAYOUT */
-.main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
 
-/* IMAGE */
-.product {
-  display: flex;
-  justify-content: center;
-}
+    /* DESKTOP LAYOUT */
+    .main {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
 
-.product img {
-  width: 70%;
-  max-width: 320px;
-}
+    /* IMAGE */
+    .product {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* RIGHT SIDE */
-.info {
-  max-width: 420px;
-}
+    .product img {
+      display: block;
+      width: 70%;
+      max-width: 320px;
+      height: auto;
+    }
 
-/* TITLE */
-.title {
-  font-size: clamp(2rem, 3vw, 3rem);
-  letter-spacing: -0.05em;
-  margin-bottom: 30px;
-}
+    /* RIGHT SIDE */
+    .info {
+      max-width: 420px;
+      width: 100%;
+    }
 
-/* NUTRITION */
-.nutrition {
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
+    /* TITLE */
+    .title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+    }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.9rem;
-}
+    .subtext {
+      margin: 0 0 32px;
+      color: rgba(242, 242, 238, 0.72);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
 
-/* EMAIL SECTION */
-.email {
-  margin-top: 40px;
-}
+    /* NUTRITION */
+    .nutrition {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.email input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-  padding: 10px 0;
-  color: white;
-  font-size: 0.9rem;
-  outline: none;
-}
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+    }
 
-/* MOBILE */
-@media (max-width: 768px) {
+    .row span:first-child {
+      color: rgba(242, 242, 238, 0.9);
+    }
 
-  .main {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+    .row span:last-child {
+      color: rgba(242, 242, 238, 0.65);
+      text-align: right;
+    }
 
-  .product img {
-    width: 50%;
-    margin: 0 auto;
-  }
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+        min-height: auto;
+      }
 
-  .info {
-    margin: 0 auto;
-  }
+      .main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
 
-  .row {
-    justify-content: space-between;
-  }
-}
-</style>
+      .product {
+        justify-content: center;
+      }
+
+      .product img {
+        width: 50%;
+        max-width: 220px;
+        margin: 0 auto;
+      }
+
+      .info {
+        margin: 0 auto;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .subtext {
+        max-width: 320px;
+        margin: 0 auto 28px;
+      }
+
+      .row {
+        text-align: left;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="main">
 
-<div class="container">
-
-  <div class="main">
-
-    <!-- LEFT IMAGE -->
-    <div class="product">
-      <img src="assets/hero-can.png" alt="EVEN can">
-    </div>
-
-    <!-- RIGHT INFO -->
-    <div class="info">
-
-      <div class="title">Stay even.</div>
-
-      <div class="nutrition">
-        <div class="row"><span>Serving</span><span>1 can</span></div>
-        <div class="row"><span>Caffeine</span><span>50 mg</span></div>
-        <div class="row"><span>L-theanine</span><span>75 mg</span></div>
-        <div class="row"><span>Electrolytes</span><span>Yes</span></div>
-        <div class="row"><span>Vitamins</span><span>Daily</span></div>
-        <div class="row"><span>Flavor</span><span>Greek Mastic Gum</span></div>
+      <!-- LEFT IMAGE -->
+      <div class="product">
+        <img src="assets/hero-can.png" alt="EVEN can" />
       </div>
 
-      <div class="email">
-        <input type="email" placeholder="Email address">
+      <!-- RIGHT INFO -->
+      <div class="info">
+        <h1 class="title">Stay even.</h1>
+        <p class="subtext">
+          Premium daily drink for those who balance long workdays and daily training.
+        </p>
+
+        <div class="nutrition">
+          <div class="row"><span>Serving</span><span>1 can</span></div>
+          <div class="row"><span>Caffeine</span><span>50 mg</span></div>
+          <div class="row"><span>L-theanine</span><span>75 mg</span></div>
+          <div class="row"><span>Electrolytes</span><span>Na<sup>+</sup>, K<sup>+</sup>, Mg<sup>2+</sup></span></div>          
+          <div class="row"><span>Vitamins</span><span>B6, B12, C, D3</span></div>
+          <div class="row"><span>Flavor</span><span>Greek Mastic Gum</span></div>
+        </div>
       </div>
 
     </div>
-
   </div>
-
-</div>
-
 </body>
 </html>
