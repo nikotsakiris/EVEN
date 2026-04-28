@@ -30,6 +30,7 @@
 
     .hero {
       height: 100vh;
+      height: 100svh;
       position: relative;
       isolation: isolate;
       overflow: hidden;
@@ -41,12 +42,26 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        url("assets/apartment_nyc_hero.png");
+      background-image: url("assets/apartment_nyc_hero.png");
       background-size: cover;
-      background-position: center;
+      background-position: center center;
       background-repeat: no-repeat;
       z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.22) 0%,
+        rgba(0,0,0,0.14) 35%,
+        rgba(0,0,0,0.38) 70%,
+        rgba(0,0,0,0.9) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
     }
 
     .top-logo {
@@ -61,7 +76,7 @@
       text-transform: uppercase;
       font-weight: 500;
       color: rgba(242,242,238,0.92);
-      z-index: 1;
+      z-index: 2;
       animation: fadeIn 0.8s ease;
     }
 
@@ -74,7 +89,7 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
-      z-index: 1;
+      z-index: 2;
       animation: fadeIn 0.8s ease 0.15s both;
     }
 
@@ -86,6 +101,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.35);
       padding-bottom: 4px;
       transition: 0.25s ease;
+      white-space: nowrap;
     }
 
     .text-button:hover {
@@ -99,10 +115,12 @@
       letter-spacing: 0.22em;
       color: rgba(242,242,238,0.35);
       animation: pulse 2.5s infinite;
+      white-space: nowrap;
     }
 
     .container {
       height: 100vh;
+      height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,7 +161,6 @@
       padding: 12px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       font-size: 0.82rem;
-
       opacity: 0;
       transform: translateX(-90px);
       filter: blur(6px);
@@ -197,22 +214,47 @@
     }
 
     @media (max-width: 768px) {
-      .main {
-        grid-template-columns: 1fr;
-        gap: 40px;
+      html, body {
+        scroll-snap-type: y mandatory;
       }
 
-      .product img {
-        width: 50%;
-        max-width: 180px;
+      .hero {
+        height: 100svh;
       }
 
       .hero::before {
-  background-size: 140%;
-  background-position: center 30%;
-}
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .top-logo {
+        top: 72px;
+        font-size: 1.35rem;
+        letter-spacing: 0.32em;
+      }
+
+      .bottom-cta {
+        bottom: 84px;
+      }
+
+      .main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 28px;
+      }
+
+      .product img {
+        width: 54%;
+        max-width: 210px;
+      }
+
+      .formula-copy {
+        width: 100%;
+      }
 
       .row {
+        gap: 20px;
+        font-size: 0.78rem;
         transform: translateY(28px);
       }
 
@@ -275,9 +317,7 @@
           }
         });
       },
-      {
-        threshold: 0.65
-      }
+      { threshold: 0.65 }
     );
 
     observer.observe(formulaSection);
