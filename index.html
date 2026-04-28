@@ -2,196 +2,243 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EVEN</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
       background: #000;
       color: #f2f2ee;
-      font-family: "Inter", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      scroll-behavior: auto;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,0.1) 0%,
+          rgba(0,0,0,0.18) 50%,
+          rgba(0,0,0,0.82) 100%
+        ),
+        url("assets/apartment_nyc_hero.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    /* TOP LOGO (TRUE CENTER) */
+    .top-logo {
+      position: absolute;
+      top: 48px;
+      left: 0;
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+
+      font-size: clamp(1.5rem, 3vw, 1.5rem);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: rgba(242,242,238,0.92);
+
+      z-index: 1;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* BOTTOM CTA (ALIGNED PERFECTLY WITH LOGO) */
+    .bottom-cta {
+      position: absolute;
+      bottom: 42px;
+      left: 0;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+      z-index: 1;
+
+      animation: fadeIn 0.8s ease 0.15s both;
+    }
+
+    .text-button {
+      font-size: 0.8rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(242,242,238,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      padding-bottom: 4px;
+      transition: 0.25s ease;
+    }
+
+    .text-button:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.85);
+      transform: translateY(-2px);
+    }
+
+    .scroll-cue {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      color: rgba(242,242,238,0.35);
+      animation: pulse 2.5s infinite;
+    }
+
+    /* SECOND SECTION */
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 24px;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
+      justify-content: center;
+
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .main {
       width: 100%;
+      max-width: 1100px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
+      padding: 0 24px;
       align-items: center;
     }
 
     .product {
       display: flex;
       justify-content: center;
-      align-items: center;
     }
 
     .product img {
       width: 70%;
       max-width: 320px;
-      height: auto;
+      animation: floatCan 5s ease-in-out infinite;
     }
 
-    .info {
-      max-width: 420px;
-      width: 100%;
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
 
-    .title {
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      margin: 0 0 14px;
-    }
-
-    .subtext {
-      margin: 0 0 24px;
-      color: rgba(242, 242, 238, 0.72);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .nutrition {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .section-subtext {
+      font-size: 0.85rem;
+      color: rgba(242,242,238,0.65);
+      margin-bottom: 24px;
     }
 
     .row {
       display: flex;
       justify-content: space-between;
-      gap: 24px;
       padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.88rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem;
     }
 
-    .row span:first-child {
-      color: rgba(242, 242, 238, 0.9);
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    .row span:last-child {
-      color: rgba(242, 242, 238, 0.65);
-      text-align: right;
+    @keyframes floatCan {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    sup {
-      font-size: 0.6em;
-      opacity: 0.6;
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
     }
 
-    .cta {
-      margin-top: 24px;
-    }
-
-    .text-button {
-      display: inline-block;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(242, 242, 238, 0.6);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .text-button:hover {
-      color: #fff;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    /* MOBILE FIXED */
+    /* MOBILE */
     @media (max-width: 768px) {
-      .container {
-        padding: 20px 16px;
-        min-height: auto;
-        align-items: flex-start;
-      }
-
       .main {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 40px;
       }
 
       .product img {
-        width: 48%;
+        width: 50%;
         max-width: 180px;
-        margin: 0 auto;
-      }
-
-      .info {
-        margin: 0 auto;
-        max-width: 100%;
-        text-align: center;
-      }
-
-      .subtext {
-        max-width: 280px;
-        margin: 0 auto 18px;
-      }
-
-      .row {
-        text-align: left;
-      }
-
-      .cta {
-        margin-top: 18px;
       }
     }
+
   </style>
 </head>
 
 <body>
-  <div class="container">
+
+  <section class="hero">
+    <div class="top-logo">EVEN</div>
+
+    <div class="bottom-cta">
+      <a href="sms:+18573170011?body=I%20want%20EVEN" class="text-button">
+        Text for access
+      </a>
+      <a href="#formula" class="scroll-cue">Formula</a>
+    </div>
+  </section>
+
+  <section class="container" id="formula">
     <div class="main">
 
-      <!-- IMAGE -->
       <div class="product">
-        <img src="assets/hero-can.png" alt="EVEN can" />
+        <img src="assets/hero-can.png" />
       </div>
 
-      <!-- INFO -->
-      <div class="info">
-        <h1 class="title">Stay even.</h1>
+      <div>
+        <h2 class="section-title">Daily.</h2>
 
-        <p class="subtext">
-          Built for consistency.
+        <p class="section-subtext">
+          Focus, hydration, and recovery without the spike.
         </p>
 
-        <div class="nutrition">
-          <div class="row"><span>Caffeine</span><span>50 mg</span></div>
-          <div class="row"><span>L-theanine</span><span>75 mg</span></div>
-          <div class="row"><span>Electrolytes</span><span>Na<sup>+</sup>, K<sup>+</sup>, Mg<sup>2+</sup></span></div>
-          <div class="row"><span>Vitamins</span><span>B6, B12, C, D3</span></div>
-          <div class="row"><span>Flavor</span><span>Greek Mastic Gum, Lemon, Mint</span></div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta">
-          <a href="sms:+18573170011?body=I%20want%20EVEN" class="text-button">
-            Text for access
-          </a>
-        </div>
+        <div class="row"><span>Caffeine</span><span>50 mg</span></div>
+        <div class="row"><span>L-theanine</span><span>75 mg</span></div>
+        <div class="row"><span>Electrolytes</span><span>Na+, K+, Mg2+</span></div>
+        <div class="row"><span>Vitamins</span><span>B6, B12, C, D3</span></div>
+        <div class="row"><span>Flavor</span><span>Citrus Green Tea</span></div>
 
       </div>
 
     </div>
-  </div>
+  </section>
+
 </body>
 </html>
