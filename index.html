@@ -42,12 +42,6 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(
-          180deg,
-          rgba(0,0,0,0.1) 0%,
-          rgba(0,0,0,0.18) 50%,
-          rgba(0,0,0,0.82) 100%
-        ),
         url("assets/apartment_nyc_hero.png");
       background-size: cover;
       background-position: center;
@@ -212,6 +206,11 @@
         width: 50%;
         max-width: 180px;
       }
+
+      .hero::before {
+  background-size: 140%;
+  background-position: center 30%;
+}
 
       .row {
         transform: translateY(28px);
